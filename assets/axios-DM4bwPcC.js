@@ -1,1 +1,0 @@
-import{d as t}from"./index-oSi0013u.js";import{a}from"./index-BtuGy7By.js";const i=a.create({baseURL:"http://localhost:5001"}),r=t(({app:o})=>{o.config.globalProperties.$axios=a,o.config.globalProperties.$api=i});export{i as api,r as default};
