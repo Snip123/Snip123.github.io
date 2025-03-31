@@ -1,0 +1,43 @@
+import{Q as w,e as Q}from"./QBtn-TpKigmME.js";import{_ as G,Q as H,P as E,a as X,b as q,c as v,d as m,e as _,f as Y,g as U}from"./_plugin-vue_export-helper-aFHPHLYy.js";import{a as Z}from"./index-BtuGy7By.js";import{r as u,o as ee,I as ae,J as V,K as i,V as a,M as o,R as k,L as le,S as te,T as oe,O as s}from"./index-DSfz9zp_.js";import"./QItem-CdtyeZhg.js";const ue={class:"price-inputs"},ne={class:"price-inputs-group"},re={class:"csv-upload"},ie={key:0,class:"csv-table"},se={class:"csv-buttons"},de={class:"calculate-button"},ce={class:"part-details"},pe={class:"price-outputs"},ve={__name:"IndexPage",setup(me){const L=Z.create({baseURL:"https://scs-cnc-cost-estimator.wm.r.appspot.com//"}),f=u(1.4),g=u(4.2),b=u(4),P=u(50),S=u(21),F=u(),C=u(!1),h=u(),d=u([]),n=u({totalBoundingBoxArea:"",finalPartTotalSurfaceArea:"",boundingBoxAreaCost:"",partSurfaceAreaCost:"",billetWeight:"",partWeight:"",weightRatio:""}),c=u({pricePerSqIn:"",machiningTotal:"",materialTotal:"",totalPrice:""}),D=()=>{console.log("file uploaded")},R=()=>{if(console.log("csv uploaded"),h.value){const l=new FileReader;l.onload=e=>{const t=e.target.result;E.parse(t,{header:!0,skipEmptyLines:!0,complete:p=>{d.value=p.data.map(M=>[M["Square Inches"],M.Price])}})},l.readAsText(h.value),console.log(d.value)}},r=l=>l?new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(l):"",x=l=>l?parseFloat(l.replace(/[^0-9.-]+/g,"")):0,T=u(r(f.value)),A=u(r(g.value)),y=u(b.value),I=u(r(P.value)),B=u(r(S.value)),W=l=>{console.log("updating billet surface area price"),f.value=x(l),T.value=r(f.value)},N=l=>{g.value=x(l),A.value=r(g.value)},O=l=>{b.value=parseFloat(l),y.value=b.value},J=l=>{P.value=x(l),I.value=r(P.value)},j=l=>{S.value=x(l),B.value=r(S.value)},$=async()=>{C.value=!0,console.log("calculating costs"),console.log(JSON.stringify(d.value));try{console.log("calculating costs");const l=new FormData;l.append("billetSurfaceAreaPrice",f.value),l.append("surfaceAreaPriceTable",JSON.stringify(d.value)),l.append("materialPricePerLb",g.value),l.append("materialMarkup",b.value),l.append("setupPrice",P.value),l.append("shippingEst",S.value),l.append("stepFile",F.value);const e=await L.post("/calculateCosts",l,{headers:{"Content-Type":"multipart/form-data"}});n.value.totalBoundingBoxArea=e.data.bounding_box_surface_area.toFixed(2),n.value.finalPartTotalSurfaceArea=e.data.part_surface_area.toFixed(2),n.value.boundingBoxAreaCost=e.data.bounding_box_area_cost.toFixed(2),n.value.partSurfaceAreaCost=e.data.part_surface_area_cost.toFixed(2),n.value.billetWeight=e.data.billet_weight.toFixed(2),n.value.partWeight=e.data.part_weight.toFixed(2),n.value.weightRatio=e.data.weight_ratio.toFixed(2),c.value.pricePerSqIn=e.data.part_surface_area_price.toFixed(2),c.value.machiningTotal=e.data.machining_cost.toFixed(2),c.value.materialTotal=e.data.material_price.toFixed(2),c.value.totalPrice=e.data.total_price.toFixed(2),console.log(e.data)}catch(l){console.error("Error calculating costs:",l)}finally{C.value=!1}},K=()=>{E.parse(`1,4.55
+5,4.55
+10,4.52
+15,4.37
+20,4.07
+25,3.72
+30,3.42
+35,3.12
+40,2.82
+45,2.52
+50,2.22
+55,1.92
+60,1.62
+65,1.32
+70,1.12
+75,0.92
+80,0.72
+85,0.62
+90,0.57
+95,0.56
+100,0.55
+105,0.54
+110,0.53
+115,0.52
+120,0.51
+125,0.50
+130,0.49
+135,0.48
+140,0.47
+145,0.47
+150,0.47
+155,0.47
+160,0.47
+165,0.47
+170,0.47
+175,0.47
+180,0.47
+185,0.47
+190,0.47
+195,0.47
+200,0.47`,{complete:e=>{d.value=e.data}})},z=()=>{const l=`data:text/csv;charset=utf-8,Square Inches,Price
+`+d.value.map(p=>p.join(",")).join(`
+`),e=encodeURI(l),t=document.createElement("a");t.setAttribute("href",e),t.setAttribute("download","price_table.csv"),document.body.appendChild(t),t.click(),document.body.removeChild(t)};return ee(()=>{K()}),(l,e)=>(V(),ae(H,{class:"flex flex-center"},{default:i(()=>[a("div",null,[o(X,{onSubmit:$},{default:i(()=>[o(q,{outline:"",modelValue:F.value,"onUpdate:modelValue":e[0]||(e[0]=t=>F.value=t),label:"Upload .STEP file",onChange:e[1]||(e[1]=t=>D())},{prepend:i(()=>[o(w,{name:"attach_file"})]),_:1},8,["modelValue"]),a("div",ue,[e[9]||(e[9]=a("label",{class:"price-inputs-label"},"Price Inputs",-1)),a("div",ne,[o(v,null,{default:i(()=>[o(m,{filled:"",modelValue:T.value,"onUpdate:modelValue":e[2]||(e[2]=t=>T.value=t),label:"Billet surface area price (per sq in)",onInput:W},null,8,["modelValue"])]),_:1}),o(v,null,{default:i(()=>[o(m,{filled:"",modelValue:A.value,"onUpdate:modelValue":e[3]||(e[3]=t=>A.value=t),label:"Material price per lb",onInput:N},null,8,["modelValue"])]),_:1}),o(v,null,{default:i(()=>[o(m,{filled:"",modelValue:y.value,"onUpdate:modelValue":e[4]||(e[4]=t=>y.value=t),label:"Material markup (multiple)",onInput:O},null,8,["modelValue"])]),_:1}),o(v,null,{default:i(()=>[o(m,{filled:"",modelValue:I.value,"onUpdate:modelValue":e[5]||(e[5]=t=>I.value=t),label:"Setup price",onInput:J},null,8,["modelValue"])]),_:1}),o(v,null,{default:i(()=>[o(m,{filled:"",modelValue:B.value,"onUpdate:modelValue":e[6]||(e[6]=t=>B.value=t),label:"Shipping (est)",onInput:j},null,8,["modelValue"])]),_:1})])]),o(_),a("div",re,[o(Y,{label:"Part Surface Area Price Table","expand-separator":""},{default:i(()=>[d.value.length?(V(),k("div",ie,[o(U,null,{default:i(()=>[e[10]||(e[10]=a("thead",null,[a("tr",null,[a("th",null,"Square Inches"),a("th",null,"Price")])],-1)),a("tbody",null,[(V(!0),k(te,null,oe(d.value,(t,p)=>(V(),k("tr",{key:p},[a("td",null,s(t[0]),1),a("td",null,s(t[1]),1)]))),128))])]),_:1})])):le("",!0),a("div",se,[o(q,{outlined:"",modelValue:h.value,"onUpdate:modelValue":[e[7]||(e[7]=t=>h.value=t),e[8]||(e[8]=t=>R())],label:"Update Price Table"},{prepend:i(()=>[o(w,{name:"attach_file"})]),_:1},8,["modelValue"]),o(Q,{onClick:z,label:"Export CSV"})])]),_:1})]),o(_),a("div",de,[o(Q,{type:"submit",loading:C.value,label:"Calculate"},null,8,["loading"])])]),_:1}),o(_),a("div",ce,[e[12]||(e[12]=a("label",{class:"part-details-label"},"Part Details",-1)),o(U,null,{default:i(()=>[e[11]||(e[11]=a("thead",null,[a("tr",null,[a("th",null,"Total Bounding box area"),a("th",null,"Final part Total Surface area"),a("th",null,"Bounding box area cost"),a("th",null,"Part Surface area cost"),a("th",null,"Billet weight (lbs)"),a("th",null,"Part weight (lbs)"),a("th",null,"Weight ratio")])],-1)),a("tbody",null,[a("tr",null,[a("td",null,s(n.value.totalBoundingBoxArea),1),a("td",null,s(n.value.finalPartTotalSurfaceArea),1),a("td",null,s(r(n.value.boundingBoxAreaCost)),1),a("td",null,s(r(n.value.partSurfaceAreaCost)),1),a("td",null,s(n.value.billetWeight),1),a("td",null,s(n.value.partWeight),1),a("td",null,s(n.value.weightRatio),1)])])]),_:1})]),o(_),a("div",pe,[e[14]||(e[14]=a("label",{class:"price-outputs-label"},"Price Outputs",-1)),o(U,null,{default:i(()=>[e[13]||(e[13]=a("thead",null,[a("tr",null,[a("th",null,"Price per sq in"),a("th",null,"Machining Total"),a("th",null,"Material Total"),a("th",null,"Total Price")])],-1)),a("tbody",null,[a("tr",null,[a("td",null,s(r(c.value.pricePerSqIn)),1),a("td",null,s(r(c.value.machiningTotal)),1),a("td",null,s(r(c.value.materialTotal)),1),a("td",null,s(r(c.value.totalPrice)),1)])])]),_:1})])])]),_:1}))}},xe=G(ve,[["__scopeId","data-v-3f5709ec"]]);export{xe as default};
